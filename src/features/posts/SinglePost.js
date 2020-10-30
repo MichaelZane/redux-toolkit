@@ -1,7 +1,9 @@
 import React from 'react'
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
-
+import { UserPost } from "./UserPost"
+import { Time } from './Time'
+import { ReactionBtn } from './ReactionBtn'
 
 export const SinglePost = ({ match }) => {
     const { postId } = match.params
@@ -19,9 +21,15 @@ export const SinglePost = ({ match }) => {
     return (
         <section>
             <article className="post">
+                <UserPost userId={post.user} />
                 <h2>{post.title}</h2>
+                <div>
+                    <UserPost userId={post.user} />
+                    <Time timestamp={post.date} />
+                </div>
                 <p className="post-content">{post.content}</p>
-                <Link to={`/editPost/${post.id}`} className="btn">Edit</Link>
+                <ReactionBtn post={post} />
+                <Link to={`/editPost/${post.id}`} className="button">Edit</Link>
             </article>
         </section>
     )

@@ -5,7 +5,6 @@ import { postUpdate } from "./postsSlice"
 
 export const EditPost = ({ match }) => {
 
-
     const { postId } = match.params
 
     const post = useSelector(state => state.posts.find(post => post.id === postId))
@@ -16,8 +15,8 @@ export const EditPost = ({ match }) => {
     const dispatch = useDispatch()
     const history = useHistory()
 
-    const onTitleChange = e => setTitle(e.target.value)
-    const onContentChange = e => setContent(e.target.value)
+    const onTitleChanged = e => setTitle(e.target.value)
+    const onContentChanged = e => setContent(e.target.value)
 
 
     const onPostSave = () => {
@@ -38,17 +37,20 @@ export const EditPost = ({ match }) => {
                 name="postTitle"
                 placeholder="What's on your mind?"
                 value={title}
-                onChange={onTitleChange}
+                onChange={onTitleChanged}
             />
             <label htmlFor="postContent">Post Content:</label>
             <textarea 
                 id="postContent"
                 name="postContent"
                 value={content}
-                onChange={onContentChange}
+                onChange={onContentChanged}
             />
         </form>
-        <button type="button" onClick={onPostSave}>Save</button>
+        <button 
+            type="button" 
+            onClick={onPostSave}
+            >Save</button>
       
     </section>
   )
